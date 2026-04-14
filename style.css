@@ -1,0 +1,115 @@
+:root {
+    --primary-green: #1b4332; /* Vert Forêt profond */
+    --accent-orange: #d68c45; /* Orange cuivré */
+    --beige-bg: #fcfaf5;      /* Beige crème clair */
+    --sage-green: #b7e4c7;    /* Vert sauge pour les accents */
+    --text-dark: #2d3a3a;
+    --white: #ffffff;
+    --shadow: 0 10px 30px rgba(27, 67, 50, 0.08);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--beige-bg);
+    color: var(--text-dark);
+    line-height: 1.6;
+}
+
+.container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+
+/* NAVIGATION */
+.nav-container {
+    position: fixed; top: 0; width: 100%; z-index: 1000;
+    background: rgba(252, 250, 245, 0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(27, 67, 50, 0.05);
+}
+
+nav { display: flex; justify-content: space-between; align-items: center; padding: 15px 0; }
+.logo a {
+    font-weight: 800; font-size: 1.5rem; color: var(--primary-green);
+    text-decoration: none; border: 2px solid var(--primary-green);
+    padding: 2px 8px; border-radius: 8px;
+}
+
+.nav-links a {
+    margin-left: 30px; text-decoration: none; color: var(--text-dark);
+    font-weight: 500; font-size: 0.95rem; transition: 0.3s;
+}
+.nav-links a:hover { color: var(--accent-orange); }
+
+/* HEADER */
+header {
+    padding: 180px 0 120px;
+    background: radial-gradient(circle at top right, var(--sage-green), transparent 40%),
+                radial-gradient(circle at bottom left, #ffe8d6, transparent 30%);
+    text-align: center;
+}
+
+.status-pill {
+    background: var(--primary-green); color: var(--white);
+    padding: 6px 18px; border-radius: 50px; font-weight: 600; font-size: 0.85rem;
+}
+
+header h1 { font-size: 4rem; margin: 20px 0; letter-spacing: -2px; color: var(--primary-green); }
+header .tagline { font-size: 1.2rem; color: var(--text-dark); max-width: 600px; margin: 0 auto 30px; }
+
+.header-badges { display: flex; justify-content: center; gap: 10px; margin-bottom: 30px; }
+.badge { background: var(--white); border: 1px solid var(--sage-green); padding: 5px 15px; border-radius: 50px; font-size: 0.85rem; }
+
+.header-links a {
+    text-decoration: none; color: var(--primary-green); font-weight: 700;
+    margin: 0 15px; border-bottom: 2px solid var(--accent-orange); padding-bottom: 5px;
+}
+
+/* CARDS & GLASSMORPHISM */
+.glass-card {
+    background: rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    border-radius: 20px; box-shadow: var(--shadow);
+}
+
+/* SECTION TITLES */
+.section-title { text-align: center; margin-bottom: 60px; }
+.section-title h2 { font-size: 2.5rem; color: var(--primary-green); margin-bottom: 15px; }
+.section-title .filter-container { margin-top: 30px; display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; }
+
+.filter-btn {
+    border: none; background: var(--white); color: var(--primary-green);
+    padding: 8px 20px; border-radius: 50px; cursor: pointer;
+    font-weight: 600; border: 1px solid var(--sage-green); transition: 0.3s;
+}
+.filter-btn.active, .filter-btn:hover { background: var(--primary-green); color: var(--white); }
+
+/* PROJECTS GRID */
+.project-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; }
+.project-card {
+    background: var(--white); padding: 30px; border-radius: 20px;
+    border-bottom: 4px solid var(--sage-green); transition: 0.4s;
+}
+.project-card:hover { transform: translateY(-10px); border-bottom-color: var(--accent-orange); }
+
+.project-tag { font-size: 0.75rem; font-weight: 800; text-transform: uppercase; color: var(--accent-orange); letter-spacing: 1px; }
+.project-card h3 { margin: 10px 0 15px; color: var(--primary-green); }
+.project-card p { font-size: 0.95rem; color: #555; margin-bottom: 20px; }
+
+.tech-used span {
+    font-size: 0.7rem; font-weight: 700; background: #f0f0f0;
+    padding: 4px 10px; border-radius: 4px; margin-right: 5px;
+}
+
+/* FOOTER */
+footer { padding: 100px 0; text-align: center; }
+.contact-card { padding: 60px; max-width: 800px; margin: 0 auto; }
+.contact-info { display: flex; justify-content: center; gap: 30px; margin-top: 30px; flex-wrap: wrap; }
+.contact-item { text-decoration: none; color: var(--primary-green); font-weight: 600; }
+.contact-item i { color: var(--accent-orange); margin-right: 8px; }
+
+@media (max-width: 768px) {
+    header h1 { font-size: 2.5rem; }
+    .nav-links { display: none; }
+}
