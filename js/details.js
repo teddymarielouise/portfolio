@@ -1,29 +1,50 @@
-// On récupère le même tableau (normalement tu devrais le mettre dans un fichier data.js séparé)
-const mesProjets = [ /* Copie-colle ton tableau ici ou importe-le */ ];
-
+// js/details.js
 document.addEventListener('DOMContentLoaded', () => {
-    // 1. On récupère l'ID dans l'URL (ex: ?id=1)
     const params = new URLSearchParams(window.location.search);
     const id = params.get('id');
-    const projet = mesProjets[id];
+    const projet = mesProjets[id]; 
 
     const detailContainer = document.getElementById('detail-content');
 
     if (projet) {
-        // 2. On affiche les données dynamiquement
+        document.title = `${projet.titre} - Détails`;
+
+        const categorieDisplay = projet.tags.length > 0 ? projet.tags[0] : "Projet";
+
         detailContainer.innerHTML = `
-            <h1>${projet.titre}</h1>
-            <img src="${projet.image}" style="max-width: 100%; border-radius: 15px;">
-            <div class="my-4">
-                ${projet.tags.map(t => `<span class="tag">${t}</span>`).join(' ')}
-            </div>
-            <p class="lead">${projet.description}</p>
-            <div class="content-complet">
-                <h3>À propos de ce projet</h3>
-                <p>C'est ici que tu peux rajouter des détails plus longs...</p>
+            <div class="row">
+                <div class="col-lg-8">
+                    <div class="mb-5">
+                        <h1 class="project-title-main">${projet.titre}</h1>
+                        <p class="project-category-sub">${categorieDisplay}</p>
+                    </div>
+
+                    <div class="row mb-4 align-items-stretch">
+                        <div class="col-md-4">
+                            <div class="tags-container-box">
+                                ${projet.tags.map(t => `<div class="tag-item">${t}</div>`).join('')}
+                            </div>
+                        </div>
+                        <div class="col-md-8">
+                            <h3 class="section-title">Description détaillée du projet</h3>
+                            <p class="section-text">${projet.descriptionComplete}</p>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-4"></div> <div class="col-md-8">
+                            <h3 class="section-title">Contraintes du projet</h3>
+                            <p class="section-text">${projet.contraintes}</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4">
+                    <div class="image-sidebar">
+                        <img src="${projet.image}" alt="${projet.titre}" class="img-fluid rounded-4 shadow">
+                    </div>
+                </div>
             </div>
         `;
-    } else {
-        detailContainer.innerHTML = "<h1>Projet introuvable</h1>";
     }
 });

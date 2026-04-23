@@ -1,29 +1,31 @@
 /* Variables CSS pour les couleurs */
-:root {
-    --bg-color: #fae4b7;
-    --text-dark: #4a453f;
-    --accent-border: #4a453f;
-    --font-title: 'Playfair Display', serif;
-    --font-text: 'Montserrat', sans-serif;
-    --filter-bg: #dadadab4; 
-    --filter-border: #4a453f; 
-}
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Poppins:wght@500;700;800&display=swap');
 
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
+:root {
+    --bg-color: #f7f3e3; /* Gris très clair, plus pro que le beige */
+    --surface-color: #ffffff;
+    --text-dark: #000000; /* Gris ardoise pour une meilleure lisibilité */
+    --text-muted: #171717;
+    --accent-color: #294f04; /* Bleu tech de confiance */
+    --accent-hover: #81b02b;
+    --accent-border: #e2e8f0;
+    --font-title: 'Poppins', sans-serif;
+    --font-text: 'Inter', sans-serif;
+    --filter-bg: #ffffff; 
 }
 
 body {
     background-color: var(--bg-color) !important;
     color: var(--text-dark);
     font-family: var(--font-text);
-    line-height: 1.6;
-    padding: 2rem;
+    line-height: 1.7;
     margin: 0 auto;
 }
-
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
 h1, h2, h3 {
     font-family: var(--font-title);
     font-weight: 700;
@@ -34,16 +36,24 @@ h1, h2, h3 {
 /* --- Navigation --- */
 nav {
     position: sticky;
-    background-color: rgba(44, 186, 60, 0.468) !important;
     top: 0; 
     z-index: 1000; 
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    background: rgba(4, 91, 8, 0.553) !important; /* Blanc translucide */
+    backdrop-filter: blur(10px); /* Effet de flou en arrière-plan */
+    -webkit-backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
 }
 
-.navbar-nav .nav-link.active {
-    color: #ef8605 !important;
+.navbar-nav .nav-link {
+    color: var(--text-dark) !important;
+    font-weight: 500;
+    transition: color 0.3s;
+}
+
+.navbar-nav .nav-link:hover, .navbar-nav .nav-link.active {
+    color: var(--accent-color) !important;
     font-weight: bold;
-    border-bottom: 2px solid #ac7800;
 }
 
 .bold {
@@ -75,6 +85,14 @@ nav {
 .hero-content {
     flex: 1;
     max-width: 50%;
+}
+
+.hero span#greeting {
+    color: var(--accent-color);
+    font-weight: 600;
+    font-size: 1.0rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
 .hero h1 {
@@ -296,29 +314,43 @@ section.contact-section {
 
 /* --- Cartes Projets --- */
 .carte-projet {
-    border: 4px solid var(--accent-border);
-    border-radius: 12px;
-    padding: 1rem;
-    background-color: var(--accent-border);
+    background-color: var(--surface-color);
+    border: 1px solid var(--accent-border);
+    border-radius: 16px;
+    padding: 0; /* On retire le padding pour que l'image touche les bords */
+    overflow: hidden;
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
 }
+
+.carte-projet:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+}
+
+
 
 .image-wrapper {
     position: relative;
     width: 100%;
-    height: 250px; /* Taille fixe pour toutes les images */
+    height: 220px;
     overflow: hidden;
-    border-radius: 8px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: var(--bg-color); 
 }
 
 .img-projet {
     width: 100%;
     height: 100%;
-    object-fit: cover; 
-    object-position: center; 
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.carte-projet:hover .img-projet {
+    transform: scale(1.05); /* Zoom léger sur l'image au survol */
+}
+
+.card-body-custom {
+    padding: 1.5rem;
+    background: var(--surface-color);
 }
 
 .content-overlay {
@@ -331,20 +363,15 @@ section.contact-section {
 }
 
 .carte-projet h3 {
-    margin-top: 0 !important; 
-    color: black;
-    background-color: var(--bg-color);
-    border: 2px solid var(--accent-border);
-    padding: 0.2rem 0.6rem;
-    font-size: 0.9rem; /* Corrigé : c'était à 0.10rem ! */
-    display: inline-block;
-    border-radius: 4px;
+    font-size: 1.25rem;
+    margin-bottom: 0.5rem;
+    color: var(--text-dark);
 }
 
 .projet-description {
-    padding: 1rem 0;
-    font-size: 0.9rem;
-    color: rgb(248, 237, 205);
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    margin-bottom: 1.5rem;
 }
 
 .tags {
@@ -371,22 +398,19 @@ section.contact-section {
 }
 
 .btn-infos {
-    display: inline-block;
+    background-color: var(--accent-color);
+    color: white;
     padding: 0.6rem 1.2rem;
-    background-color: var(--bg-color);
-    border: 2px solid var(--accent-border);
-    color: var(--text-dark);
-    text-decoration: none;
     border-radius: 8px;
-    font-size: 0.8rem;
-    font-weight: 700;
-    transition: all 0.3s ease;
+    text-decoration: none;
+    font-weight: 600;
+    transition: background-color 0.3s;
+    border: none;
 }
 
 .btn-infos:hover {
-    background-color: var(--accent-border);
+    background-color: var(--accent-hover);
     color: white;
-    transform: translateY(-2px);
 }
 
 /* --- Section Contact --- */
@@ -454,5 +478,199 @@ section.contact-section {
     .filter-sidebar {
         width: 100%;
         position: static; /* Retire le sticky sur mobile pour ne pas bloquer l'écran */
+    }
+}
+
+/* --- Styles spécifiques à la page détails --- */
+
+.project-main-img {
+    transition: transform 0.5s ease;
+    max-height: 400px;
+    width: 100%;
+    object-fit: cover;
+}
+
+.project-main-img:hover {
+    transform: scale(1.02);
+}
+
+.detail-section h2 {
+    border-left: 5px solid var(--accent-color);
+    padding-left: 1rem;
+    color: var(--text-dark);
+}
+
+.content-text p {
+    font-size: 1.1rem;
+    color: var(--text-muted);
+    line-height: 1.8;
+}
+
+.tag-pill {
+    display: inline-block;
+    padding: 0.4rem 1rem;
+    margin-right: 0.5rem;
+    margin-bottom: 0.5rem;
+    border-radius: 50px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    background: #e2e8f0;
+    color: var(--text-dark);
+}
+
+.tag-pill.active {
+    background: var(--accent-color);
+    color: white;
+}
+
+aside .card {
+    background: var(--surface-color);
+    border: 1px solid var(--accent-border) !important;
+}
+
+aside strong {
+    color: var(--text-dark);
+}
+
+/* Espaces réservés pour le futur contenu */
+.content-text em {
+    color: var(--accent-color);
+    font-style: italic;
+    opacity: 0.7;
+}
+
+
+/* --- Mise en page spécifique : Page Détails du projet --- */
+
+.project-title {
+    color: var(--text-dark);
+    margin-bottom: 0.2rem;
+    font-family: var(--font-title);
+}
+
+.project-category {
+    color: var(--accent-color);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 600;
+}
+
+/* La boîte grise pour les tags (inspirée de ton schéma) */
+.tags-box {
+    background-color: #f1f5f9; /* Gris très clair */
+    border: 2px solid var(--accent-border);
+    border-radius: 24px;
+    padding: 1.5rem 1rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+    align-content: flex-start;
+}
+
+/* Les petits boutons à l'intérieur de la boîte */
+.tag-pill-outline {
+    background-color: transparent;
+    color: var(--text-dark);
+    border: 2px solid var(--text-dark);
+    border-radius: 20px;
+    padding: 0.2rem 0.8rem;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.content-text {
+    color: var(--text-muted);
+    line-height: 1.8;
+    font-size: 1.05rem;
+}
+
+/* L'image sur la colonne de droite */
+.image-showcase {
+    position: relative;
+    border-radius: 16px;
+    padding: 10px;
+    background: white;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+}
+
+.project-detail-img {
+    border-radius: 12px;
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+
+/* Boîte pointillée pour tes futurs ajouts */
+.border-dashed {
+    border-style: dashed !important;
+    border-width: 2px !important;
+    border-color: #cbd5e1 !important;
+}
+
+/* --- Style spécifique à la disposition demandée --- */
+
+.project-title-main {
+    font-family: var(--font-title);
+    font-size: 3rem;
+    font-weight: 700;
+    color: var(--text-dark);
+}
+
+.project-category-sub {
+    font-family: var(--font-title);
+    font-size: 1.5rem;
+    color: #8c7e6a; /* Couleur plus douce pour la catégorie */
+    margin-top: -10px;
+}
+
+/* Boîte grise pour les tags */
+.tags-container-box {
+    background-color: #e2e2e2; /* Gris comme sur le schéma */
+    border: 2px solid #000;
+    border-radius: 35px;
+    padding: 25px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    height: fit-content;
+}
+
+.tag-item {
+    background: #fff;
+    border: 2px solid #4a453f;
+    border-radius: 15px;
+    padding: 2px 10px;
+    font-size: 0.7rem;
+    font-weight: 800;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.section-title {
+    font-family: var(--font-title);
+    font-size: 1.4rem;
+    font-weight: 600;
+    margin-bottom: 15px;
+}
+
+.section-text {
+    font-family: var(--font-text);
+    color: var(--text-dark);
+    line-height: 1.6;
+}
+
+/* Image sur le côté */
+.image-sidebar img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    border: 4px solid white; /* Cadre blanc pour faire ressortir l'image */
+}
+
+@media (max-width: 991px) {
+    .tags-container-box {
+        margin-bottom: 2rem;
     }
 }
