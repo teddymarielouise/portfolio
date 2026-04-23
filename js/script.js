@@ -1,110 +1,148 @@
-const mesProjets = [
-    {
-        titre: "Pokedex",
-        tags: ["HTML", "CSS", "Bootstrap", "JavaScript"],
-        image: "images/site_pokemon_accueil.png",
-        description: "Création d'un site responsive et dynamique en utilisant une API externe.",
-        descriptionComplete: "Création d'un site responsive en HTML, CSS et JS sur le thème de Pokémon en utilisant une API externe. Gestion de plusieurs pages, du design du site et des différents éléments.",
-        contraintes: "Cahier des charges : utilisation d'une API externe, affichage dynamique des Pokémons, tri en fonction du type, recherche via le nom ou l'id et pouvoir sauvegarder des Pokémons.",
-    },
-    {
-        titre: "Portfolio Communautaire",
-        tags: ["SQL", "SGBD", "PHP", "BackEnd", "FrontEnd"],
-        image: "images/fd1.jpg",
-        description: "Conception d'un site de portfolio communautaire ainsi que d'une base de données.",
-        descriptionComplete: "Développement complet d'un schéma de base de données ainsi que d'un site de portfolio communautaire. Le projet inclut la modélisation conceptuelle, la création des tables et l'injection de données de façon sécurisée et la gestion des données des utilisateurs.",
-        contraintes: "Manipulation rigoureuse du SQL : création de tables, injection de jeux de tests, requêtes complexes et mise en place de contraintes d'intégrité pour garantir la cohérence des données., ainsi que la sécurisation du site contre les attaques courantes (injections SQL, XSS, etc.) et la gestion des sessions pour l'authentification des utilisateurs.",
-    },
-    {
-        titre: "Système de Gestion Scolaire (ENT)",
-        tags: ["SQL", "SGBD",],
-        image: "images/bdd.png",
-        description: "Conception d'une base de données relationnelle modélisant un Environnement Numérique de Travail (ENT).",
-        descriptionComplete: "Développement complet d'un schéma de base de données pour un collège. Le projet inclut la modélisation conceptuelle, la création des tables et l'injection de données cohérentes pour simuler un établissement réel.",
-        contraintes: "Manipulation rigoureuse du SQL : création de tables, injection de jeux de tests, requêtes complexes et mise en place de contraintes d'intégrité pour garantir la cohérence des données.",
-    },
-    {
-        titre: "Workflow & Collaboration Forge",
-        tags: ["Git", "Forge", "Collaboration"],
-        image: "images/image_forge.png",
-        description: "Maîtrise de la gestion de projets via Git et les outils de forge logicielle.",
-        descriptionComplete: "Acquisition de compétences avancées sur la gestion de projets individuels et collectifs. Utilisation de flux de travail professionnels pour assurer la pérennité et la traçabilité du code.",
-        contraintes: "Mise en œuvre d'un workflow Git avancé : gestion des branches, réalisation de merges et rebases, et résolution de conflits complexes en environnement collaboratif.",
-    },
-    {
-        titre: "Recodage de Commandes Système",
-        tags: ["C", "Shell"],
-        image: "images/c.jpg",
-        description: "Réimplémentation des commandes UNIX 'cat' et 'tr' en langage C.",
-        descriptionComplete: "Développement en autonomie des utilitaires stu_cat et stu_tr. Ce projet explore les mécanismes profonds des systèmes UNIX et la manipulation de flux de données.",
-        contraintes: "Utilisation d'appels système (read/write), gestion dynamique de la mémoire (malloc), manipulation de pointeurs (char **) et création d'une bibliothèque standard propriétaire.",
-    },
-    {
-        titre: "Administration OS & Virtualisation",
-        tags: ["Linux", "Windows", "OS", "VMware"],
-        image: "images/linux-and-windows.png",
-        description: "Étude comparative et installation d'environnements systèmes Windows et Linux.",
-        descriptionComplete: "Apprentissage de l'architecture matérielle et des solutions de virtualisation. Installation, configuration et optimisation d'environnements Linux et Windows pour des besoins spécifiques.",
-        contraintes: "Configuration de machines virtuelles, installation d'un OS Linux en Dualboot sur matériel physique et compréhension approfondie des systèmes de fichiers.",
-    },
-    {
-        titre: "Architecture Réseau Entreprise",
-        tags: ["Réseau", "IP", "Cisco", "Infrastructure"],
-        image: "images/administration-reseau.jpg",
-        description: "Conception et déploiement simulé d'une infrastructure réseau sous Cisco Packet Tracer.",
-        descriptionComplete: "Modélisation complète d'un réseau d'entreprise incluant le plan d'adressage IP et la configuration des équipements selon un cahier des charges professionnel.",
-        contraintes: "Conception d'un plan d'adressage IP hiérarchisé, segmentation réseau et respect des contraintes de performance et de sécurité imposées par l'architecture.",
-    },
-    {
-        titre: "Algorithmique IA : Graphes",
-        tags: ["Python", "Algorithmique"],
-        image: "images/algo.png",
-        description: "Implémentation d'algorithmes de recherche de chemin dans des structures de données complexes.",
-        descriptionComplete: "Découverte et application des fondamentaux de l'IA via l'étude des graphes. Développement d'outils de résolution de problèmes par exploration de chemins.",
-        contraintes: "Programmation en Python d'algorithmes de recherche en largeur (BFS) et en profondeur (DFS) pour trouver des solutions optimales dans un graphe.",
-    }
-];
-
-const container = document.getElementById('container-cards');
-
-    // On vide le container au cas où
-    container.innerHTML = '';
-
-    // 2. La boucle de génération
-    mesProjets.forEach(projet => {
-        // Création des tags avec ta classe .tag
-        const tagsHTML = projet.tags.map(tag => 
-            `<span class="tag">${tag}</span>`
-        ).join('');
-
-        // Génération de la structure avec TES classes CSS (.carte-projet, etc.)
-// On récupère l'index pour savoir quel projet on clique
-mesProjets.forEach((projet, index) => {
-    const tagsHTML = projet.tags.map(tag => `<span class="tag">${tag}</span>`).join('');
-
-    const cardHTML = `
-        <div class="col">
-            <article class="carte-projet h-100 d-flex flex-column">
-                <div class="image-wrapper">
-                    <img src="${projet.image}" alt="${projet.titre}" class="img-projet">
-                    <div class="content-overlay">
-                        <h3>${projet.titre}</h3>
-                        <div class="tags">${tagsHTML}</div>
-                    </div>
-                </div>
-                
-                <div class="card-body-custom d-flex flex-column flex-grow-1 p-3">
-                    <p class="projet-description">${projet.description}</p>
-                    
-                    <div class="mt-auto text-end">
-                        <a href="details.html?id=${index}" class="btn-infos">Plus d'informations</a>
-                    </div>
-                </div>
-            </article>
-        </div>
-    `;
-    container.innerHTML += cardHTML;
+document.addEventListener('DOMContentLoaded', () => {
+    afficherProjets(mesProjets);
+    initFiltres();
 });
 
-        container.innerHTML += cardHTML;
+function afficherProjets(projetsA_Afficher) {
+    const container = document.getElementById('container-cards');
+    if (!container) return; // Sécurité si on n'est pas sur la bonne page
+
+    // On utilise map() pour créer un tableau de chaînes HTML, puis join('') pour en faire un seul gros bloc HTML
+    const htmlComplet = projetsA_Afficher.map((projet, index) => {
+        const tagsHTML = projet.tags.map(tag => `<span class="tag">${tag}</span>`).join('');
+
+        return `
+            <div class="col">
+                <article class="carte-projet h-100 d-flex flex-column">
+                    <div class="image-wrapper">
+                        <img src="${projet.image}" alt="Aperçu du projet ${projet.titre}" class="img-projet" loading="lazy">
+                        <div class="content-overlay">
+                            <h3>${projet.titre}</h3>
+                            <div class="tags">${tagsHTML}</div>
+                        </div>
+                    </div>
+                    
+                    <div class="card-body-custom d-flex flex-column flex-grow-1 p-3">
+                        <p class="projet-description">${projet.description}</p>
+                        <div class="mt-auto text-end">
+                            <a href="details.html?id=${index}" class="btn-infos">Plus d'informations</a>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        `;
+    }).join('');
+
+    // On injecte tout en une seule fois (meilleure performance)
+    container.innerHTML = htmlComplet;
+}
+
+// Stockage des filtres actuellement sélectionnés
+let activeFilters = new Set();
+
+function initFiltres() {
+    const catContainer = document.getElementById('categories-container');
+    const tagsContainer = document.getElementById('tags-container');
+    
+    // Sécurité : on vérifie que les conteneurs existent sur la page
+    if (!catContainer || !tagsContainer) return;
+    
+    // On vide le contenu existant
+    catContainer.innerHTML = '';
+    tagsContainer.innerHTML = '';
+
+    // 1. Générer les catégories
+    filtreContent.categories.forEach(cat => {
+        const btn = document.createElement('button');
+        btn.className = 'filter-btn'; // Ta classe CSS !
+        btn.textContent = cat;
+        btn.onclick = () => toggleFilter(cat, btn);
+        catContainer.appendChild(btn);
     });
+
+    // 2. Générer les tags
+    filtreContent.tags.forEach(tag => {
+        const tagBtn = document.createElement('button');
+        tagBtn.className = 'tag-pill'; // Ta classe CSS !
+        tagBtn.textContent = tag;
+        tagBtn.onclick = () => toggleFilter(tag, tagBtn);
+        tagsContainer.appendChild(tagBtn);
+    });
+}
+
+    // 2. Boucle pour les catégories
+    const catDest = document.querySelector('#group-categories .filter-options');
+    filtreContent.categories.forEach(cat => {
+        const btn = document.createElement('button');
+        btn.className = 'pill-btn';
+        btn.textContent = cat.toUpperCase();
+        btn.onclick = () => toggleFilter(cat, btn);
+        catDest.appendChild(btn);
+    });
+
+    // 3. Boucle pour les tags
+    const tagDest = document.querySelector('#group-tags .tags-grid');
+    filtreContent.tags.forEach(tag => {
+        const tagRow = document.createElement('div');
+        tagRow.className = 'tag-row';
+        tagRow.innerHTML = `<span></span><span class="tag-pill">${tag}</span>`;
+        tagRow.onclick = () => toggleFilter(tag, tagRow.querySelector('.tag-pill'));
+        tagDest.appendChild(tagRow);
+    });
+
+
+
+// Fonction pour activer/désactiver visuellement le filtre
+function toggleFilter(value, element) {
+    if (activeFilters.has(value)) {
+        activeFilters.delete(value);
+        // On utilise 'active' pour correspondre parfaitement à ton style.css
+        element.classList.remove('active'); 
+    } else {
+        activeFilters.add(value);
+        // On utilise 'active' pour correspondre parfaitement à ton style.css
+        element.classList.add('active'); 
+    }
+    
+    // On met à jour l'affichage des cartes
+    appliquerLeFiltrage(); 
+}
+
+// Fonction pour filtrer et n'afficher que les bons projets
+function appliquerLeFiltrage() {
+    // Si aucun filtre n'est sélectionné, on affiche toutes les cartes
+    if (activeFilters.size === 0) {
+        afficherProjets(mesProjets);
+        return;
+    }
+
+    // Sinon, on garde uniquement les projets qui ont au moins un tag/catégorie correspondant
+    const projetsFiltres = mesProjets.filter(projet => {
+        // Tu peux vérifier dans les tags (ou dans la catégorie si tu l'ajoutes à tes données)
+        return projet.tags.some(tag => activeFilters.has(tag));
+    });
+
+    afficherProjets(projetsFiltres);
+}
+
+function appliquerLeFiltrage() {
+    // Si aucun filtre n'est sélectionné, on affiche tout
+    if (activeFilters.size === 0) {
+        afficherProjets(mesProjets);
+        return;
+    }
+
+    // Sinon, on filtre les projets
+    const projetsFiltres = mesProjets.filter(projet => {
+        // Un projet est affiché s'il possède au moins un des tags sélectionnés
+        // (Tu pourrais aussi adapter pour filtrer par catégorie exacte si tu ajoutes une clé 'categorie' dans tes données)
+        return projet.tags.some(tag => activeFilters.has(tag));
+    });
+
+    afficherProjets(projetsFiltres);
+}
+
+document.addEventListener('DOMContentLoaded', initFiltres);
+
+
+
