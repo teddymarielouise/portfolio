@@ -113,8 +113,9 @@ nav {
 
 /* --- Images --- */
 img.profile-img {
-    width: 30%;
-    height: auto;
+    width: 25rem;
+    height: 25rem;
+    object-fit: cover;
     border-radius: 8px;
     object-fit: cover;
 }
@@ -468,9 +469,43 @@ section.contact-section {
         margin-top: 0.5rem;
         margin-bottom: 1rem;
     }
-    
-    .hero h1 {
-        font-size: 1.5rem;
+
+.hero {
+        display: grid !important;
+        /* On crée 2 colonnes : une large pour le texte, une auto pour l'image */
+        grid-template-columns: 1fr auto; 
+        gap: 0.5rem;
+        align-items: start; /* Aligne le haut de l'image avec le haut du texte */
+    }
+
+.hero-content {
+        display: contents; /* Supprime la barrière de la div pour la grille */
+    }
+
+    #greeting, .hero h2, .hero p, .hero-buttons {
+        grid-column: 1 / -1; 
+        width: 100%;
+    }
+
+.hero-image-wrapper {
+        grid-column: 2;
+        /* On ajuste la position pour qu'elle soit sur la même ligne que le H1 */
+        grid-row: 2; 
+        display: flex;
+        justify-content: flex-end;
+    }
+
+img.profile-img {
+        width: 70px;
+        height: 70px;
+        border-radius: 50%;
+    }
+
+
+.hero h1 {
+        grid-column: 1;
+        font-size: 1.8rem;
+        margin-top: 0;
     }
 
     .hero .subtitle {
