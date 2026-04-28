@@ -4,6 +4,7 @@ let activeFilters = new Set();
 document.addEventListener('DOMContentLoaded', () => {
     afficherProjets(mesProjets);
     initFiltres();
+    initModal(); // On initialise la modale au chargement
 });
 
 function afficherProjets(projetsA_Afficher) {
@@ -16,8 +17,9 @@ function afficherProjets(projetsA_Afficher) {
     }
 
     const htmlComplet = projetsA_Afficher.map((projet, index) => {
-        // Ajout de couleurs aléatoires ou fixes pour les tags pour plus de vie
         const tagsHTML = projet.tags.map(tag => `<span class="tag">${tag}</span>`).join('');
+        // On récupère l'index global du projet dans mesProjets pour le lier au bouton
+        const idGlobal = mesProjets.indexOf(projet); 
 
         return `
             <div class="col">
@@ -30,7 +32,7 @@ function afficherProjets(projetsA_Afficher) {
                         <div class="tags mb-3">${tagsHTML}</div>
                         <p class="projet-description">${projet.description}</p>
                         <div class="mt-auto text-end">
-                            <a href="details.html?id=${mesProjets.indexOf(projet)}" class="btn-infos">Découvrir le projet</a>
+                            <button data-id="${idGlobal}" class="btn-infos btn-open-modal">En savoir plus</button>
                         </div>
                     </div>
                 </article>
@@ -89,4 +91,55 @@ function appliquerLeFiltrage() {
     });
 
     afficherProjets(projetsFiltres);
+}
+
+// === LOGIQUE DE LA MODALE ===
+function initModal() {
+    const modal = document.getElementById('projectModal');
+    if (!modal) return;
+    
+    const closeBtn = document.querySelector('.close-modal');
+    const modalTitle = document.getElementById('modalTitle');
+    const modalImage = document.getElementById('modalImage');
+    const modalDesc = document.getElementById('modalDesc');
+    const modalTags = document.getElementById('modalTags');
+    const modalConstraints = document.getElementById('modalConstraints');
+
+    // On écoute les clics sur le conteneur des cartes (Délégation d'événements)
+    document.getElementById('container-cards').addEventListener('click', (e) => {
+        if (e.target.classList.contains('btn-open-modal')) {
+            const projectId = e.target.getAttribute('data-id');
+            const data = mesProjets[projectId];
+
+            if (data) {
+                // Remplissage des données
+                modalTitle.textContent = data.titre;
+                modalImage.src = data.image;
+                modalDesc.textContent = data.descriptionComplete;
+                modalConstraints.textContent = data.contraintes;
+                
+                // Création des tags pour la modale
+                modalTags.innerHTML = data.tags.map(tag =>
+                    `<span class="tag-pill-modal">${tag}</span>`
+                ).join('');
+
+                // Affichage
+                document.body.style.overflow = 'hidden'; // Bloque le scroll de la page derrière
+                modal.style.display = "block";
+            }
+        }
+    });
+
+    // Fermeture de la modale
+    const closeModal = () => {
+        modal.style.display = "none";
+        document.body.style.overflow = ''; // Rétablit le scroll
+    };
+
+    closeBtn.onclick = closeModal;
+
+    // Ferme la modale si on clique en dehors de la boîte blanche
+    window.onclick = (e) => {
+        if (e.target == modal) closeModal();
+    };
 }

@@ -14,16 +14,21 @@
 </head>
 <body data-bs-spy="scroll" data-bs-target=".navbar" data-bs-offset="70" tabindex="0">
 
-<nav id="main-navbar" class="navbar navbar-expand-lg  sticky-top shadow-sm">
+<nav id="main-navbar" class="navbar navbar-expand-lg sticky-top shadow-sm">
     <div class="container-fluid">
-        <a class="navbar-brand" href="#presentation">Teddy MARIE-LOUISE</a>
+        
+        <a class="navbar-brand d-flex align-items-center gap-2" href="#presentation">
+            <img src="images/Ted_logo.png" alt="Logo" width="30" height="24" class="d-inline-block">
+            <span>Teddy MARIE-LOUISE</span>
+        </a>
         
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         
         <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ms-auto"> <li class="nav-item">
+            <ul class="navbar-nav ms-auto"> 
+                <li class="nav-item">
                     <a class="nav-link" href="#presentation">Qui suis-je ?</a>
                 </li>
                 <li class="nav-item">
@@ -37,10 +42,9 @@
                 </li>
             </ul>
         </div>
+        
     </div>
 </nav>
-
-
 
 <section id="presentation" class="hero container-portfolio">
     <div class="hero-content">
@@ -48,7 +52,7 @@
         <h1 class="display-3 fw-bold mb-3">Teddy<br><span style="color: var(--accent-color);">Marie-Louise</span></h1>
         <h2 class="h4 mb-4 text-muted">Architecte en Logiciels Performants et Sécurisés</h2>
         <p class="lead mb-5">
-            <strong>Passionné par la programmation, je conçois des solutions logicielles, des architectures web et des bases de données robustes. Mon objectif : écrire un code performant, sécurisé et facile à maintenir. Je suis constamment à la recherche de nouveaux défis pour améliorer mes compétences et contribuer à des projets innovants.
+            <strong>Passionné par la programmation, j'apprends a concevoir des solutions logicielles, des architectures web et des bases de données robustes. Mon objectif : écrire un code performant, sécurisé et facile à maintenir. Je suis constamment à la recherche de nouveaux défis pour améliorer mes compétences et contribuer à des projets innovants.
             </strong>
         </p>
         <div class="hero-buttons d-flex gap-3">
@@ -67,7 +71,7 @@
         <div class="formations-content">
             <h2>Mes formations</h2>
             <ul class="formations-list">
-                <li><strong>École 89 (B1 en Architecte en Logiciels Performants et Sécurisés) 2025-2026</strong></li>
+                <li><strong>École 89 (B1 en Architecte en Logiciels Performants et Sécurisés) 2025-maintenant</strong></li>
                 <li>Université Gustave Eiffel (L2 STAPS APAS) 2023-2025</li>
                 <li>Lycée Jean Vilar (Baccalauréat général, spécialité Anglais Monde Contemporain et Éducation Physique, Pratiques et Culture Sportives)</li>
             </ul>
@@ -93,18 +97,23 @@
 
         <div class="travail-wrapper d-flex flex-column flex-lg-row align-items-start gap-5">
             
-            <aside class="filter-sidebar">
-                
-                <div class="filter-group w-100 d-flex flex-column align-items-center mt-3 mb-4">
-                    <span class="group-title mb-3">CATÉGORIES</span>
-                    <div id="categories-container" class="w-100 d-flex flex-column align-items-center"></div> 
-                </div>
+        <button class="btn-infos" type="button" data-bs-toggle="collapse" data-bs-target="#filterCollapse">
+            Afficher les filtres
+        </button>
 
-                <div class="filter-group w-100 d-flex flex-column align-items-center">
-                    <span class="group-title mb-3">TAGS</span>
-                    <div class="active-tags w-100" id="tags-container"></div> 
-                </div>
-            </aside>
+        <aside class="filter-sidebar collapse d-lg-block" id="filterCollapse">
+            
+            <div class="filter-group w-100 d-flex flex-column align-items-center mt-3 mb-4">
+                <span class="group-title mb-3">CATÉGORIES</span>
+                <div id="categories-container" class="w-100 d-flex flex-column align-items-start align-items-lg-center"></div> 
+            </div>
+
+            <div class="filter-group w-100 d-flex flex-column align-items-center">
+                <span class="group-title mb-3">TAGS</span>
+                <div class="active-tags w-100" id="tags-container"></div> 
+            </div>
+            
+        </aside>
 
             <div class="cards-column flex-grow-1 w-100">
                 <div id="container-cards" class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
@@ -142,6 +151,34 @@
 
     </section>
 
+
+    <div id="projectModal" class="modal">
+    <div class="modal-content">
+        <span class="close-modal">&times;</span>
+        <h2 id="modalTitle" class="display-6 fw-bold">Titre du Projet</h2>
+        
+        <div class="modal-body mt-4">
+            <div class="row align-items-center">
+                <div class="col-md-5 mb-4 mb-md-0 text-center">
+                    <img id="modalImage" src="" alt="Aperçu du projet" class="img-fluid rounded-4 shadow-sm" style="max-height: 300px; object-fit: cover;">
+                </div>
+                <div class="col-md-7">
+                    <div class="modal-tags mb-3" id="modalTags"></div>
+                    
+                    <h4 class="h5 fw-bold mb-2">Description détaillée</h4>
+                    <p id="modalDesc" class="modal-description text-muted mb-4"></p>
+                    
+                    <h4 class="h5 fw-bold mb-2">Contraintes & Défis</h4>
+                    <div class="project-constraints-bubble">
+                        <p id="modalConstraints" class="mb-0"></p>
+                    </div>
+                    <h4 class="h5 fw-bold mb-2 mt-4">Liens github</h4>
+                    <p id="modalGithubLinks" class="text-decoration-underline"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
 <script src="js/data.js"></script>

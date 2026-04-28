@@ -43,6 +43,7 @@ nav {
     -webkit-backdrop-filter: blur(10px);
     border-bottom: 1px solid rgba(0, 0, 0, 0.05);
     transition: all 0.3s ease;
+    text-align: center;
 }
 
 .navbar-nav .nav-link {
@@ -267,7 +268,6 @@ section.contact-section {
     color: var(--filter-border); 
     border: 2px solid var(--filter-border);
     border-radius: 12px;
-    padding: 6px 15px; 
     width: 100%;
     font-size: 0.75rem;
     font-weight: 700;
@@ -465,21 +465,92 @@ section.contact-section {
     .hero, .formations, .travail-header, .contact-section {
         flex-direction: column;
         gap: 2rem;
+        margin-top: 0.5rem;
+        margin-bottom: 1rem;
     }
     
     .hero h1 {
-        font-size: 2.5rem;
+        font-size: 1.5rem;
     }
+
+    .hero .subtitle {
+        font-size: 0.75rem;
+    }
+
+    .hero h2 {
+        font-size: 1.2rem;
+    }
+
+    .hero span #greeting {
+        font-size: 0.75rem;
+    }
+
+    .hero p {
+        font-size: 1.2rem;
+    }
+
     
     .hero-content {
         max-width: 100%;
     }
     
+    
+    /*  filtre tags dans le filtre sur mobile */
+
+#categories-container {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr; /* Deux colonnes de taille égale */
+    gap: 0.25rem; /* L'espace entre les boutons */
+}
+    
+    
     .filter-sidebar {
         width: 100%;
         position: static; /* Retire le sticky sur mobile pour ne pas bloquer l'écran */
+        border-collapse: collapse;
+        padding-top: 0.5rem;
+    }
+
+    .group-title {
+        width: 100%;
+        font-size: 0.75rem;
+        text-align: left;
+    }
+
+    .filter-btn {
+        width: 100%; /* Le bouton remplit sa case de la grille */
+        margin-bottom: 0; /* On enlève la marge du bas car le 'gap' de la grille s'en occupe */
+        text-align: center; /* Plus propre pour un affichage en grille */
+        font-size: 0.75rem;
+        background-color: #f1f5f9;
+        border-radius: 0%;
+    }
+
+    #tags-container {
+        display: grid !important;
+        grid-template-columns: 1fr 1fr 1fr; /* Deux colonnes de taille égale */
+        gap: 0.25rem;
+    }
+
+.tag-pill {
+        width: 100%;
+        /* 1. Taille de police adaptée au mobile */
+        font-size: 0.6rem; 
+        
+        /* 2. Réduire le padding pour laisser de la place au texte */
+        padding: 4px 2px; 
+        
+        /* 3. Forcer le texte à rester sur une seule ligne ou à se couper proprement */
+        white-space: nowrap;      /* Empêche le texte de revenir à la ligne */
+        overflow: hidden;         /* Coupe ce qui dépasse de la case */
+        text-overflow: ellipsis;  /* Ajoute "..." si le mot est vraiment trop long */
+        
+        display: block;           /* Nécessaire pour que text-overflow fonctionne */
+        text-align: center;
+        border-radius: 0%;
     }
 }
+
 
 /* --- Styles spécifiques à la page détails --- */
 
@@ -669,8 +740,188 @@ aside strong {
     border: 4px solid white; /* Cadre blanc pour faire ressortir l'image */
 }
 
-@media (max-width: 991px) {
-    .tags-container-box {
-        margin-bottom: 2rem;
-    }
+/* =========================================
+   MODAL (POP-UP) STYLES
+========================================= */
+.modal { 
+    display: none; 
+    position: fixed; 
+    z-index: 2000; 
+    left: 0; 
+    top: 0; 
+    width: 100%; 
+    height: 100%; 
+    background-color: rgba(0,0,0,0.6); /* Fond assombri */
+    backdrop-filter: blur(5px); /* Effet verre dépoli sur le fond */
+    -webkit-backdrop-filter: blur(5px);
+    animation: fadeIn 0.3s; 
 }
+
+.modal-content { 
+    background-color: var(--surface-color); 
+    margin: 5vh auto; 
+    padding: 35px; 
+    border-radius: 20px; 
+    width: 90%; 
+    max-width: 900px; 
+    position: relative; 
+    box-shadow: 0 25px 50px rgba(0,0,0,0.2); 
+    animation: slideUp 0.3s ease-out; 
+    max-height: 90vh; 
+    overflow-y: auto; /* Permet de scroller à l'intérieur si le texte est long */
+}
+
+.close-modal { 
+    position: absolute; 
+    right: 25px; 
+    top: 20px; 
+    font-size: 32px; 
+    cursor: pointer; 
+    color: var(--text-muted); 
+    transition: color 0.2s;
+    line-height: 1;
+}
+
+.close-modal:hover { 
+    color: var(--accent-color); 
+}
+
+#modalTitle {
+    color: var(--text-dark);
+    font-family: var(--font-title);
+    padding-right: 40px; /* Évite que le texte passe sous la croix */
+}
+
+.modal-description { 
+    font-size: 1.05rem; 
+    line-height: 1.7;
+}
+
+.project-constraints-bubble { 
+    background-color: #f1f5f9; 
+    border-left: 4px solid var(--accent-color); 
+    padding: 15px 20px; 
+    border-radius: 0 12px 12px 0; 
+    font-size: 0.95rem; 
+    color: var(--text-dark); 
+}
+
+.tag-pill-modal {
+    display: inline-block;
+    background: transparent;
+    border: 2px solid var(--accent-color); 
+    color: var(--accent-color); 
+    padding: 4px 12px; 
+    border-radius: 20px; 
+    font-size: 0.75rem; 
+    margin-right: 6px;
+    margin-bottom: 6px;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+/* =========================================
+   MODAL (POP-UP) STYLES
+========================================= */
+.modal { 
+    display: none; 
+    position: fixed; 
+    z-index: 2000; 
+    left: 0; 
+    top: 0; 
+    width: 100%; 
+    height: 100%; 
+    background-color: rgba(0,0,0,0.6); /* Fond assombri */
+    backdrop-filter: blur(5px); /* Effet verre dépoli sur le fond */
+    -webkit-backdrop-filter: blur(5px);
+    animation: fadeIn 0.3s; 
+}
+
+.modal-content { 
+    background-color: var(--surface-color); 
+    margin: 5vh auto; 
+    padding: 35px; 
+    border-radius: 20px; 
+    width: 90%; 
+    max-width: 900px; 
+    position: relative; 
+    box-shadow: 0 25px 50px rgba(0,0,0,0.2); 
+    animation: slideUp 0.3s ease-out; 
+    max-height: 90vh; 
+    overflow-y: auto; /* Permet de scroller à l'intérieur si le texte est long */
+}
+
+.close-modal { 
+    position: absolute; 
+    right: 25px; 
+    top: 20px; 
+    font-size: 32px; 
+    cursor: pointer; 
+    color: var(--text-muted); 
+    transition: color 0.2s;
+    line-height: 1;
+}
+
+.close-modal:hover { 
+    color: var(--accent-color); 
+}
+
+#modalTitle {
+    color: var(--text-dark);
+    font-family: var(--font-title);
+    padding-right: 40px; /* Évite que le texte passe sous la croix */
+}
+
+.modal-description { 
+    font-size: 1.05rem; 
+    line-height: 1.7;
+}
+
+.project-constraints-bubble { 
+    background-color: #f1f5f9; 
+    border-left: 4px solid var(--accent-color); 
+    padding: 15px 20px; 
+    border-radius: 0 12px 12px 0; 
+    font-size: 0.95rem; 
+    color: var(--text-dark); 
+}
+
+.tag-pill-modal {
+    display: inline-block;
+    background: transparent;
+    border: 2px solid var(--accent-color); 
+    color: var(--accent-color); 
+    padding: 4px 12px; 
+    border-radius: 20px; 
+    font-size: 0.75rem; 
+    margin-right: 6px;
+    margin-bottom: 6px;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+/* Animations clés */
+@keyframes fadeIn { 
+    from { opacity: 0; } 
+    to { opacity: 1; } 
+}
+@keyframes slideUp { 
+    from { transform: translateY(50px); opacity: 0; } 
+    to { transform: translateY(0); opacity: 1; } 
+}
+
+/* Animations clés */
+@keyframes fadeIn { 
+    from { opacity: 0; } 
+    to { opacity: 1; } 
+}
+@keyframes slideUp { 
+    from { transform: translateY(50px); opacity: 0; } 
+    to { transform: translateY(0); opacity: 1; } 
+}
+
+
+
+
+
+
