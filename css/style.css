@@ -551,6 +551,12 @@ section.contact-section {
     }
 }
 
+/* Ce style s'applique uniquement aux écrans de 900px ET PLUS */
+@media (min-width: 900px) {
+    #filtre-btn {
+        display: none; /* Le bouton disparaît sur tablette large et ordinateur */
+    }
+}
 
 /* --- Styles spécifiques à la page détails --- */
 
