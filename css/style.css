@@ -113,8 +113,9 @@ nav {
 
 /* --- Images --- */
 img.profile-img {
-    width: 30%;
-    height: auto;
+    width: 25rem;
+    height: 25rem;
+    object-fit: cover;
     border-radius: 8px;
     object-fit: cover;
 }
@@ -468,7 +469,34 @@ section.contact-section {
         margin-top: 0.5rem;
         margin-bottom: 1rem;
     }
-    
+
+.hero {
+        display: flex !important;
+        flex-direction: row; 
+        /* 1. Aligne les éléments sur le haut (le sommet du texte et de l'image) */
+        align-items: flex-start; 
+        justify-content: space-between;
+        gap: 1rem;
+        margin-top: 2rem;
+    }
+
+.hero-content {
+        max-width: 70%; /* Ajuste selon tes besoins */
+    }
+
+    .hero-image-wrapper {
+        max-width: 30%;      /* L'image prend le reste de la largeur */
+        display: flex;
+        justify-content: flex-end;
+    }
+
+    img.profile-img {
+        width: 80px;         /* On réduit la taille pour que ça tienne à côté du nom */
+        height: 80px;
+        object-fit: cover;
+    }
+
+
     .hero h1 {
         font-size: 1.5rem;
     }
