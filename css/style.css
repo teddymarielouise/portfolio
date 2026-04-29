@@ -558,7 +558,6 @@ img.profile-img {
         text-align: center; /* Plus propre pour un affichage en grille */
         font-size: 0.75rem;
         background-color: #f1f5f9;
-        border-radius: 0%;
     }
 
     #tags-container {
