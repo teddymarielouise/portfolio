@@ -2,23 +2,26 @@
 const mesProjets = [
     {
         titre: "Pokedex",
+        categorie: "Développement",
         tags: ["HTML", "CSS", "Bootstrap", "JavaScript"],
         image: "images/site_pokemon_accueil.png",
         description: "Création d'un site responsive et dynamique en utilisant une API externe.",
         descriptionComplete: "Création d'un site responsive en HTML, CSS et JS sur le thème de Pokémon en utilisant une API externe. Gestion de plusieurs pages, du design du site et des différents éléments.",
-        contraintes: "Cahier des charges : utilisation d'une API externe, affichage dynamique des Pokémons, tri en fonction du type, recherche via le nom ou l'id et pouvoir sauvegarder des Pokémons.",
+        contraintes: "Cahier des charges : utilisation d'une API externe, affichage dynamique des Pokémons, tri en fonction du type, recherche via le nom ou l'id et pouvoir sauvegarder un ou plusieurs Pokémons sur le site.",
     },
     {
         titre: "Portfolio Communautaire",
+        categorie: "Base de Données",
         tags: ["SQL", "SGBD", "PHP", "BackEnd", "FrontEnd"],
         image: "images/fd1.jpg",
-        description: "Conception d'un site de portfolio communautaire ainsi que d'une base de données.",
+        description: "Conception d'un site d'hebergement et de création de portfolio communautaire ainsi que d'une base de données.",
         descriptionComplete: "Développement complet d'un schéma de base de données ainsi que d'un site de portfolio communautaire. Le projet inclut la modélisation conceptuelle, la création des tables et l'injection de données de façon sécurisée et la gestion des données des utilisateurs.",
         contraintes: "Manipulation rigoureuse du SQL : création de tables, injection de jeux de tests, requêtes complexes et mise en place de contraintes d'intégrité pour garantir la cohérence des données., ainsi que la sécurisation du site contre les attaques courantes (injections SQL, XSS, etc.) et la gestion des sessions pour l'authentification des utilisateurs.",
     },
     {
         titre: "Système de Gestion Scolaire (ENT)",
-        tags: ["SQL", "SGBD",],
+        categorie: "Base de Données",
+        tags: ["SQL", "SGBD"],
         image: "images/bdd.png",
         description: "Conception d'une base de données relationnelle modélisant un Environnement Numérique de Travail (ENT).",
         descriptionComplete: "Développement complet d'un schéma de base de données pour un collège. Le projet inclut la modélisation conceptuelle, la création des tables et l'injection de données cohérentes pour simuler un établissement réel.",
@@ -26,6 +29,7 @@ const mesProjets = [
     },
     {
         titre: "Workflow & Collaboration Forge",
+        categorie: "Développement",
         tags: ["Git", "Forge", "Collaboration"],
         image: "images/image_forge.png",
         description: "Maîtrise de la gestion de projets via Git et les outils de forge logicielle.",
@@ -34,14 +38,25 @@ const mesProjets = [
     },
     {
         titre: "Recodage de Commandes Système",
+        categorie: "Système",
         tags: ["C", "Shell"],
-        image: "images/c.jpg",
-        description: "Réimplémentation des commandes UNIX 'cat' et 'tr' en langage C.",
-        descriptionComplete: "Développement en autonomie des utilitaires stu_cat et stu_tr. Ce projet explore les mécanismes profonds des systèmes UNIX et la manipulation de flux de données.",
-        contraintes: "Utilisation d'appels système (read/write), gestion dynamique de la mémoire (malloc), manipulation de pointeurs (char **) et création d'une bibliothèque standard propriétaire.",
+        image: "images/c_code.png",
+        description: "Réimplémentation des commandes UNIX 'cat' et 'tr' et 'ls' en C.",
+        descriptionComplete: "Développement en autonomie des utilitaires stu_cat et stu_tr et stu_ls. Ces projet explore les mécanismes profonds des systèmes UNIX et la manipulation de flux de données.",
+        contraintes: "Utilisation d'appels système (read/write), gestion dynamique de la mémoire (malloc), manipulation de pointeurs et création d'une bibliothèque standard propriétaire.",
+    },
+    {
+        titre: "Algorithme de labirante",
+        categorie: "Développement",
+        tags: ["C", "Shell"],
+        image: "images/maze.png",
+        description: "Création d'un programme en C pour résoudre un labyrinthe à partir d'une représentation textuelle.",
+        descriptionComplete: "Développement d'un programme en C qui lit une représentation textuelle d'un labyrinthe, verifie sa validité et construit une structure de données interne et utilise un algorithme de recherche pour trouver un chemin du point de départ à la sortie.",
+        contraintes: "Programmation en C d'algorithmes de recherche en largeur (BFS) et en profondeur (DFS) pour trouver des solutions optimales dans un graphe.",
     },
     {
         titre: "Administration OS & Virtualisation",
+        categorie: "Système",
         tags: ["Linux", "Windows", "OS", "VMware"],
         image: "images/linux-and-windows.png",
         description: "Étude comparative et installation d'environnements systèmes Windows et Linux.",
@@ -50,6 +65,7 @@ const mesProjets = [
     },
     {
         titre: "Architecture Réseau Entreprise",
+        categorie: "Réseau",
         tags: ["Réseau", "IP", "Cisco", "Infrastructure"],
         image: "images/administration-reseau.jpg",
         description: "Conception et déploiement simulé d'une infrastructure réseau sous Cisco Packet Tracer.",
@@ -58,15 +74,25 @@ const mesProjets = [
     },
     {
         titre: "Algorithmique IA : Graphes",
+        categorie: "Développement",
         tags: ["Python", "Algorithmique"],
         image: "images/algo.png",
         description: "Implémentation d'algorithmes de recherche de chemin dans des structures de données complexes.",
         descriptionComplete: "Découverte et application des fondamentaux de l'IA via l'étude des graphes. Développement d'outils de résolution de problèmes par exploration de chemins.",
         contraintes: "Programmation en Python d'algorithmes de recherche en largeur (BFS) et en profondeur (DFS) pour trouver des solutions optimales dans un graphe.",
+    },
+    {
+        titre: "Création d'un mode de jeu et d'un serveur Minecraft",
+        categorie: "Projet personnel",
+        tags: ["Java", "Minecraft", "Serveur"],
+        image: "images/images_fk/spawn_night.png",
+        description: "Développement d'un mode de jeu personnalisé et d'un serveur Minecraft pour une expérience de jeu unique.",
+        descriptionComplete: "Conception et développement d'un mode de jeu personnalisé, d'une carte sur-mesure ainsi que d'un serveur Minecraft pour offrir une expérience de jeu unique et immersive en multijoueur.",
+        contraintes: "Utilisation de Java pour le développement de plugins Minecraft, configuration avancée du serveur et optimisation des performances pour garantir une expérience de jeu fluide.",
     }
 ];
 
 const filtreContent = {
-    categories: ["Développement", "Base de Données", "Système", "Réseau"],
-    tags: ["Python", "Algorithmique", "C", "Shell", "Linux", "Windows", "OS", "VMware", "Réseau", "IP", "Cisco", "Infrastructure"]
+    categories: ["Développement", "Base de Données", "Système", "Réseau", "Projet personnel"],
+    tags: ["Python", "Algorithmique", "C", "Shell", "Linux", "Windows", "OS", "VMware", "Réseau", "IP", "Cisco", "Infrastructure", "JavaScript", "HTML", "CSS", "Bootstrap", "SQL", "SGBD", "PHP", "BackEnd", "FrontEnd", "Git", "Forge", "Collaboration", "Java", "Minecraft", "Serveur"],
 };

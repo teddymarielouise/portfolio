@@ -81,13 +81,32 @@ function toggleFilter(value, element) {
 }
 
 function appliquerLeFiltrage() {
+    // Si aucun filtre n'est cliqué, on affiche tout
     if (activeFilters.size === 0) {
         afficherProjets(mesProjets);
         return;
     }
 
+    // On sépare intelligemment ce qui est une catégorie et ce qui est un tag
+    const categoriesActives = filtreContent.categories.filter(cat => activeFilters.has(cat));
+    const tagsActifs = filtreContent.tags.filter(tag => activeFilters.has(tag));
+
     const projetsFiltres = mesProjets.filter(projet => {
-        return projet.tags.some(tag => activeFilters.has(tag));
+        let matchCategorie = true;
+        let matchTag = true;
+
+        // Si l'utilisateur a cliqué sur au moins une catégorie
+        if (categoriesActives.length > 0) {
+            matchCategorie = categoriesActives.includes(projet.categorie);
+        }
+
+        // Si l'utilisateur a cliqué sur au moins un tag
+        if (tagsActifs.length > 0) {
+            matchTag = projet.tags.some(tag => tagsActifs.includes(tag));
+        }
+
+        // Le projet s'affiche s'il correspond à la catégorie sélectionnée ET aux tags sélectionnés
+        return matchCategorie && matchTag;
     });
 
     afficherProjets(projetsFiltres);
